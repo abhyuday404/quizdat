@@ -1,0 +1,149 @@
+{
+  "title": "The honest check-in",
+  "questions": [
+    {
+      "text": "The group chat: you send a message in your friend group chat. Everyone's online, but nobody replies for two hours. What goes through your mind?",
+      "options": [
+        "They're probably busy, no big deal",
+        "Did I say something weird?",
+        "I start re-reading my message five times",
+        "I don't even notice"
+      ],
+      "correct": null,
+      "timeLimit": 30,
+      "note": "Same situation, completely different reactions. The message didn't change, only the story we told ourselves about it."
+    },
+    {
+      "text": "The result day: you get your marks and they're lower than you expected. What's the first thing you do?",
+      "options": [
+        "Check what my friends got",
+        "Keep it to myself and avoid the topic",
+        "Call someone at home",
+        "Shrug it off and move on"
+      ],
+      "correct": null,
+      "timeLimit": 30,
+      "note": "Some of us reach out, some of us go quiet. Neither is wrong, but it's worth knowing which one you do."
+    },
+    {
+      "text": "The bad day: you're having a really rough day and a friend asks, \"Hey, you okay?\" What do you most likely say?",
+      "options": [
+        "\"Yeah, I'm fine\"",
+        "\"Just tired\"",
+        "I tell them what's actually going on",
+        "Depends completely on who's asking"
+      ],
+      "correct": null,
+      "timeLimit": 30,
+      "note": "Look at how many people picked 'I'm fine' or 'just tired.' Remember this the next time someone says it to you."
+    },
+    {
+      "text": "The friend who's gone quiet: a friend who's usually talkative has been quiet and distant for a week. What do you do?",
+      "options": [
+        "Message them directly and ask",
+        "Wait for them to come to me",
+        "Ask a mutual friend if they know what's up",
+        "Try to cheer them up without bringing it up"
+      ],
+      "correct": null,
+      "timeLimit": 30,
+      "note": "Most of us want to help, we just aren't sure how. Later we'll talk about how to start that conversation."
+    },
+    {
+      "text": "When you're overwhelmed: assignments, exams, and family expectations all pile up at once. What's your go-to move?",
+      "options": [
+        "Make a to-do list and power through",
+        "Sleep or scroll to escape for a while",
+        "Talk to someone about it",
+        "Freeze and do nothing until the last minute"
+      ],
+      "correct": null,
+      "timeLimit": 30,
+      "note": "If you picked D, look around, you've got company. Coping isn't one-size-fits-all."
+    },
+    {
+      "text": "The comparison trap: you see a classmate post about landing a big internship. Honest first reaction?",
+      "options": [
+        "Genuinely happy for them",
+        "Happy for them, but a little \"what am I doing?\"",
+        "Mostly \"what am I doing?\"",
+        "Mute and keep scrolling"
+      ],
+      "correct": null,
+      "timeLimit": 30,
+      "note": "Two feelings can exist at the same time. Being happy for someone and worried about yourself doesn't make you a bad person."
+    },
+    {
+      "text": "Saying no: your friends plan a night out, but you're exhausted and just want to stay in. What do you do?",
+      "options": [
+        "Say no honestly",
+        "Make up an excuse",
+        "Go anyway so I don't miss out",
+        "Say \"maybe\" and then disappear"
+      ],
+      "correct": null,
+      "timeLimit": 30,
+      "note": "Why is saying 'I'm tired, I need rest' so hard? That's worth thinking about."
+    },
+    {
+      "text": "Who you'd talk to: if something was really bothering you, who would you most likely talk to first?",
+      "options": [
+        "A friend",
+        "Family",
+        "Nobody, I'd figure it out myself",
+        "Someone online or a stranger"
+      ],
+      "correct": null,
+      "timeLimit": 30,
+      "note": "If a lot of hands went to C, that's exactly why sessions like this exist. You don't have to figure everything out alone."
+    },
+    {
+      "text": "The compliment: someone gives you a genuine compliment. What do you do?",
+      "options": [
+        "Say thank you and accept it",
+        "Deflect it (\"No, it's nothing\")",
+        "Feel awkward and change the subject",
+        "Wonder if they actually meant it"
+      ],
+      "correct": null,
+      "timeLimit": 30,
+      "note": "Interesting how many of us find it easier to believe criticism than kindness."
+    },
+    {
+      "text": "Asking for help: you're stuck on something and don't understand it, but everyone else seems to get it. What do you do?",
+      "options": [
+        "Ask in front of everyone",
+        "Ask someone privately later",
+        "Google it and hope for the best",
+        "Pretend I understand"
+      ],
+      "correct": null,
+      "timeLimit": 30,
+      "note": "A lot of us choose D. And the funny thing is, half the people around you are probably doing the same."
+    },
+    {
+      "text": "Your recharge button: after a draining week, what actually helps you feel better?",
+      "options": [
+        "Being around people",
+        "Being completely alone",
+        "Doing something creative or active",
+        "Sleep. Lots of sleep."
+      ],
+      "correct": null,
+      "timeLimit": 30,
+      "note": "There's no correct way to recharge. Knowing what works for you is part of taking care of yourself."
+    },
+    {
+      "text": "The honest one: on a scale of energy, where are you right now, today?",
+      "options": [
+        "Fully charged",
+        "Doing okay",
+        "Running low",
+        "Running on fumes"
+      ],
+      "correct": null,
+      "timeLimit": 30,
+      "note": "Thank you for being honest. Whatever you picked, it's okay. Let's make the rest of today a little lighter."
+    }
+  ]
+}
