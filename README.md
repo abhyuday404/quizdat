@@ -4,7 +4,7 @@ A live quiz for a room full of people. The presenter shows questions on a big
 screen, participants join by scanning a QR code on their phones, and after each
 question the presenter screen shows how the answers were distributed.
 
-Live: <https://mha.abhyuday404.workers.dev> (and <https://quiz.abhyudayrai.com> once the zone is active)
+Live: <https://mha.abhyuday404.workers.dev> (and <https://quizdat.abhyudayrai.com> once the zone is active)
 
 ## How a session goes
 
@@ -66,7 +66,7 @@ used in QR codes.
 
 ## Custom domain
 
-The Worker is bound to `quiz.abhyudayrai.com` through the `routes` entry in
+The Worker is bound to `quizdat.abhyudayrai.com` through the `routes` entry in
 `wrangler.jsonc` (a Workers custom domain, so Cloudflare manages the DNS
 record and the certificate). It serves there once the zone `abhyudayrai.com`
 is active on Cloudflare, which needs the registrar's nameservers pointed at

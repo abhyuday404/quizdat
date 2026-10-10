@@ -7,7 +7,7 @@
   "observability": { "enabled": true },
   "workers_dev": true,
   "preview_urls": false,
-  "routes": [{ "pattern": "quiz.abhyudayrai.com", "custom_domain": true }],
+  "routes": [{ "pattern": "quizdat.abhyudayrai.com", "custom_domain": true }],
   "assets": {
     "directory": "public",
     "binding": "ASSETS",
