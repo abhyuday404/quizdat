@@ -1,0 +1,26 @@
+{
+  "name": "qr-quiz",
+  "version": "1.0.0",
+  "description": "Live QR-code quiz: presenter screen + phones, answer distribution after each question",
+  "main": "src/worker.js",
+  "scripts": {
+    "dev": "wrangler dev --ip 0.0.0.0",
+    "deploy": "wrangler deploy",
+    "test": "node --test test/*.test.js",
+    "tail": "wrangler tail"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "qrcode": "^1.5.4"
+  },
+  "devDependencies": {
+    "wrangler": "^4.149.0"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "private": true,
+  "type": "module"
+}
