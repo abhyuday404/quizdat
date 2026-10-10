@@ -1,0 +1,9 @@
+{
+  "title": "Warm-up trivia",
+  "questions": [
+    { "text": "Which planet is known as the Red Planet?", "options": ["Venus", "Mars", "Jupiter", "Mercury"], "correct": 1, "timeLimit": 20 },
+    { "text": "What does “HTTP” stand for?", "options": ["HyperText Transfer Protocol", "High Transfer Text Process", "Hyperlink Text Transport Program", "Home Tool Transfer Protocol"], "correct": 0, "timeLimit": 20 },
+    { "text": "How many sides does a hexagon have?", "options": ["5", "6", "7", "8"], "correct": 1, "timeLimit": 15 },
+    { "text": "Which one do you prefer?", "options": ["Tea", "Coffee", "Neither"], "correct": null, "timeLimit": null }
+  ]
+}
