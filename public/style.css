@@ -107,8 +107,12 @@ label.small { font-size: .8rem; font-weight: 500; color: var(--ink-2); display: 
 .editor-top { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
 .editor-head { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 20px; }
 .editor-head .title-field { flex: 1 1 320px; }
-.editor-head .title-field input { font-size: 1.4rem; font-weight: 700; letter-spacing: -0.02em; padding: 10px 0; background: transparent; border: 0; border-radius: 0; }
-.editor-head .title-field input:focus { outline: none; }
+.editor-head .title-field { position: relative; }
+.editor-head .title-field input { font-size: 1.4rem; font-weight: 700; letter-spacing: -0.02em; padding: 10px 28px 10px 0; background: transparent; border: 0; border-bottom: 1px solid transparent; border-radius: 0; cursor: text; transition: border-color .15s ease; }
+.editor-head .title-field input:hover { border-bottom-color: var(--line-2); }
+.editor-head .title-field input:focus { outline: none; border-bottom-color: var(--accent); }
+.editor-head .title-field::after { content: "✎"; position: absolute; right: 4px; top: 50%; transform: translateY(-50%); color: var(--ink-3); font-size: 1rem; pointer-events: none; }
+.editor-head .title-field:focus-within::after { display: none; }
 .editor-help { color: var(--ink-2); font-size: .9rem; margin: 0 0 28px; }
 .qcard { margin-bottom: 14px; padding: 22px; }
 .qcard .qhead { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
