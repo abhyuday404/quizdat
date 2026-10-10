@@ -65,7 +65,7 @@ function client(code) {
 }
 
 async function createRoom(quiz) {
-  const res = await fetch(`${BASE}/api/rooms`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ quiz }) });
+  const res = await fetch(`${BASE}/api/rooms`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ quiz, origin: BASE }) });
   return { status: res.status, body: await res.json() };
 }
 

@@ -329,7 +329,7 @@ async function createRoom() {
     res = await fetch('/api/rooms', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ quiz }),
+      body: JSON.stringify({ quiz, origin: location.origin }),
     });
   } catch {
     throw new Error('Could not reach the server. Check your connection.');

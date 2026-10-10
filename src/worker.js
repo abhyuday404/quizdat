@@ -27,8 +27,10 @@ async function createRoom(request, env) {
   } catch (e) {
     return json({ ok: false, error: e.message }, 400);
   }
-  // Phones are sent to whatever host the presenter used, unless overridden.
-  const base = (env.PUBLIC_URL || new URL(request.url).origin).replace(/\/+$/, '');
+  // Phones are sent to whatever address the presenter page was opened on
+  // (sent by the page, since wrangler dev rewrites the request host to the
+  // custom domain), unless PUBLIC_URL overrides it.
+  const base = (env.PUBLIC_URL || pageOrigin(body.origin) || new URL(request.url).origin).replace(/\/+$/, '');
   for (let attempt = 0; attempt < 8; attempt++) {
     const code = newRoomCode();
     const joinUrl = `${base}/play?code=${code}`;
@@ -37,6 +39,15 @@ async function createRoom(request, env) {
     if (res.ok) return json({ ok: true, code, hostToken: res.hostToken });
   }
   return json({ ok: false, error: 'Could not allocate a room code. Try again.' }, 503);
+}
+
+function pageOrigin(v) {
+  try {
+    const u = new URL(String(v));
+    return ['http:', 'https:'].includes(u.protocol) ? u.origin : null;
+  } catch {
+    return null;
+  }
 }
 
 export default {
