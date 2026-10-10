@@ -80,6 +80,8 @@ export function distribution(state, answers) {
   return counts;
 }
 
+export const isScored = (state) => state.quiz.questions.some((q) => q.correct !== null);
+
 export function leaderboard(state) {
   return Object.values(state.players)
     .sort((a, b) => b.score - a.score || a.name.localeCompare(b.name))
@@ -98,6 +100,7 @@ export function hostView(state, answers, connected) {
     phase: state.phase,
     index: state.index,
     total: state.quiz.questions.length,
+    scored: isScored(state),
     question: q && { text: q.text, options: q.options, correct: showResults ? q.correct : null, timeLimit: q.timeLimit },
     deadline: state.deadline,
     serverNow: Date.now(),
@@ -124,6 +127,7 @@ export function playerView(state, answers, player, board = leaderboard(state)) {
     phase: state.phase,
     index: state.index,
     total: state.quiz.questions.length,
+    scored: isScored(state),
     question: q && { text: q.text, options: q.options, correct: showResults ? q.correct : null },
     deadline: state.deadline,
     serverNow: Date.now(),

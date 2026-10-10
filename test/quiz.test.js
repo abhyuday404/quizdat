@@ -57,6 +57,8 @@ test('views hide the answer while voting and reveal it after', () => {
   assert.equal(playerView(state, answers, state.players.p1).question.correct, null);
   assert.equal(playerView(state, answers, state.players.p1).myAnswer, 1);
   assert.equal(hv.qrSvg, '<svg/>');
+  assert.equal(hv.scored, true);
+  assert.equal(playerView(state, answers, state.players.p1).scored, true);
   assert.ok(!('hostToken' in hv), 'host token must never be sent back');
 
   state.phase = 'results';

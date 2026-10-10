@@ -141,7 +141,7 @@ function answer(option) {
 
 function render(s) {
   state = s;
-  whoPill.textContent = `${s.name} · ${s.score.toLocaleString()} pts`;
+  whoPill.textContent = s.scored ? `${s.name} · ${s.score.toLocaleString()} pts` : s.name;
   whoPill.classList.remove('hidden');
   countdown.stop();
   const chosen = s.myAnswer ?? pendingAnswer;
@@ -186,7 +186,7 @@ function render(s) {
     setChildren(view, headline, renderBars(q, s.distribution), scoreBox(s));
   } else if (s.phase === 'leaderboard') {
     setChildren(view, el('div', { class: 'center' },
-      el('h1', { text: `#${s.rank}` })), scoreBox(s));
+      el('h1', { text: s.scored ? `#${s.rank}` : 'Hold on' })), scoreBox(s));
   } else if (s.phase === 'ended') {
     const scored = s.podium && s.podium.some((p) => p.score > 0);
     setChildren(view, el('div', { class: 'center' },
@@ -201,6 +201,7 @@ function render(s) {
 }
 
 function scoreBox(s) {
+  if (!s.scored) return null;
   return el('div', { class: 'score-box' },
     el('span', { class: 'pill', text: `${s.score.toLocaleString()} pts` }),
     s.rank ? el('span', { class: 'pill', text: `Rank #${s.rank} of ${s.playerCount}` }) : null);
