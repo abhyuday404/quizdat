@@ -10,7 +10,6 @@
 <body>
   <div class="phone">
     <div class="phone-top">
-      <a href="/" class="brand">QR Quiz</a>
       <span class="spacer"></span>
       <span class="pill hidden" id="whoPill"></span>
     </div>
@@ -19,7 +18,10 @@
         <h1>Join</h1>
         <input id="code" maxlength="8" autocapitalize="characters" inputmode="text" placeholder="Room code" aria-label="Room code">
         <div style="height:10px"></div>
-        <input id="name" maxlength="24" placeholder="Your name" aria-label="Your name" autocomplete="nickname">
+        <div class="name-row">
+          <input id="name" maxlength="24" placeholder="Your name" aria-label="Your name" autocomplete="off">
+          <button type="button" class="ghost icon" id="shuffleName" title="Another name" aria-label="Another name">↻</button>
+        </div>
         <div class="error" id="joinError" style="margin-top:10px"></div>
         <button class="primary big" style="width:100%" id="joinBtn">Join</button>
       </form>

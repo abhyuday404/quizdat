@@ -192,6 +192,8 @@ label.small { font-size: .8rem; font-weight: 500; color: var(--ink-2); display: 
 .phone h2 { font-size: 1.35rem; letter-spacing: -0.02em; text-wrap: balance; }
 .phone .card { padding: 24px; }
 .phone .card h1 { margin-bottom: 16px; }
+.name-row { display: flex; gap: 8px; }
+.name-row .icon { flex: 0 0 auto; font-size: 1.1rem; padding: 0 14px; }
 .phone #code { font-family: "JetBrains Mono", monospace; letter-spacing: .2em; font-weight: 700; font-size: 1.3rem; text-transform: uppercase; }
 .center { text-align: center; }
 .answer-grid { display: grid; gap: 10px; }

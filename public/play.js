@@ -18,6 +18,31 @@ let wantedName = ''; // name typed in the form, used for the first join
 
 const playerKey = (c) => `qrquiz.player.${c}`;
 
+const ANIME_NAMES = [
+  'Naruto', 'Sasuke', 'Sakura', 'Kakashi', 'Itachi', 'Hinata', 'Shikamaru', 'Gaara',
+  'Goku', 'Vegeta', 'Gohan', 'Bulma', 'Piccolo', 'Trunks',
+  'Luffy', 'Zoro', 'Nami', 'Sanji', 'Robin', 'Chopper', 'Usopp', 'Franky', 'Brook', 'Ace',
+  'Ichigo', 'Rukia', 'Light', 'L', 'Ryuk', 'Misa',
+  'Eren', 'Mikasa', 'Armin', 'Levi', 'Erwin', 'Hange', 'Sasha', 'Jean',
+  'Edward', 'Alphonse', 'Winry', 'Mustang', 'Hawkeye',
+  'Saitama', 'Genos', 'Tatsumaki', 'Mob', 'Reigen',
+  'Tanjiro', 'Nezuko', 'Zenitsu', 'Inosuke', 'Giyu', 'Shinobu', 'Rengoku',
+  'Gojo', 'Megumi', 'Nobara', 'Yuji', 'Nanami', 'Sukuna',
+  'Deku', 'Bakugo', 'Todoroki', 'Ochaco', 'Iida', 'Kirishima',
+  'Spike', 'Faye', 'Jet', 'Ed', 'Asuka', 'Rei', 'Shinji', 'Misato',
+  'Killua', 'Gon', 'Kurapika', 'Leorio', 'Hisoka', 'Lelouch', 'Kallen', 'Suzaku',
+  'Kirito', 'Asuna', 'Totoro', 'Chihiro', 'Haku', 'Howl', 'Sophie', 'Kiki', 'Ponyo', 'Nausicaa',
+  'Rem', 'Emilia', 'Subaru', 'Saber', 'Rin', 'Shirou', 'Yato', 'Hiyori',
+  'Senku', 'Chika', 'Kaguya', 'Anya', 'Loid', 'Yor', 'Bond',
+  'Denji', 'Power', 'Makima', 'Aki', 'Thorfinn', 'Askeladd',
+  'Violet', 'Rimuru', 'Ainz', 'Kaneki', 'Touka', 'Yusuke', 'Kurama', 'Hiei',
+  'Inuyasha', 'Kagome', 'Usagi', 'Sailor Mars', 'Vash', 'Alucard', 'Guts', 'Griffith',
+  'Lucy', 'Natsu', 'Erza', 'Gray', 'Yugi', 'Kaiba', 'Ash', 'Misty', 'Brock',
+  'Astro Boy', 'Akira', 'Kaneda', 'Tetsuo', 'Motoko', 'Batou', 'Hanako', 'Nagisa',
+  'Frieren', 'Fern', 'Stark', 'Himmel', 'Marcille', 'Laios', 'Senshi', 'Chilchuck',
+];
+const randomName = () => ANIME_NAMES[Math.floor(Math.random() * ANIME_NAMES.length)];
+
 const countdown = makeCountdown((left) => {
   const t = document.getElementById('ptimer');
   if (t) t.textContent = left === null ? '' : `⏱ ${left}s`;
@@ -29,7 +54,7 @@ function showForm() {
   setChildren(view, );
   form.classList.remove('hidden');
   codeInput.value = code;
-  nameInput.value = store('local', 'qrquiz.name') || '';
+  nameInput.value = randomName();
   (code ? nameInput : codeInput).focus();
 }
 
@@ -83,6 +108,8 @@ function connect(c) {
   });
 }
 
+document.getElementById('shuffleName').addEventListener('click', () => { nameInput.value = randomName(); nameInput.focus(); });
+
 form.addEventListener('submit', (e) => {
   e.preventDefault();
   const c = codeInput.value.trim().toUpperCase().replace(/[^A-Z0-9]/g, '');
@@ -90,7 +117,6 @@ form.addEventListener('submit', (e) => {
   if (!c) { joinError.textContent = 'Enter the room code.'; return; }
   if (!/^[A-HJ-NP-Z2-9]{5}$/.test(c)) { joinError.textContent = 'Room codes are 5 letters and numbers.'; return; }
   if (!n) { joinError.textContent = 'Enter your name.'; return; }
-  store('local', 'qrquiz.name', n);
   wantedName = n;
   connect(c);
 });
