@@ -15,8 +15,12 @@ let state = null;
 let pendingAnswer = null; // option chosen but not yet confirmed by the server
 let socket = null; // connection to the room in `code`
 let wantedName = ''; // name typed in the form, used for the first join
+let useSeat = true; // false right after the form is submitted: join fresh, don't reuse a seat
 
+// The seat is per tab (sessionStorage), so several tabs in one browser are
+// several players, while a reload or a phone waking up keeps the same seat.
 const playerKey = (c) => `quizdat.player.${c}`;
+const seat = (c, v) => store('session', playerKey(c), v);
 
 const ANIME_NAMES = [
   'Naruto', 'Sasuke', 'Sakura', 'Kakashi', 'Itachi', 'Hinata', 'Shikamaru', 'Gaara',
@@ -63,7 +67,7 @@ const btn = document.getElementById('joinBtn');
 // Join (or rejoin) on the current connection: with the saved seat if we have
 // one, otherwise with the name from the form.
 function join() {
-  const saved = store('local', playerKey(code));
+  const saved = useSeat ? seat(code) : null;
   const payload = saved ? { playerId: saved } : { name: wantedName };
   if (!saved && !wantedName) { showForm(); return; }
   joinError.textContent = '';
@@ -73,19 +77,21 @@ function join() {
     if (!res || !res.ok) {
       const err = (res && res.error) || 'Could not join.';
       if (err === 'Connection lost.') return; // the reconnect will retry
-      if (saved) { store('local', playerKey(code), null); if (wantedName) { join(); return; } }
+      if (saved) { seat(code, null); if (wantedName) { join(); return; } }
       showForm();
       joinError.textContent = saved ? '' : err;
       return;
     }
     joined = true;
-    store('local', playerKey(code), res.playerId);
+    useSeat = true;
+    seat(code, res.playerId);
     history.replaceState(null, '', `/play?code=${code}`);
     form.classList.add('hidden');
   });
 }
 
-function connect(c) {
+function connect(c, fresh = false) {
+  useSeat = !fresh;
   if (socket && socket.code === c) { if (socket.connected) join(); return; }
   if (socket) socket.close();
   code = c;
@@ -97,7 +103,7 @@ function connect(c) {
   socket.on('kicked', onKicked);
   socket.on('disconnect', () => { if (joined) toast('Connection lost. Reconnecting…'); });
   socket.on('roomerror', (msg) => {
-    store('local', playerKey(c), null);
+    seat(c, null);
     socket = null;
     btn.disabled = false;
     showForm();
@@ -118,7 +124,7 @@ form.addEventListener('submit', (e) => {
   if (!/^[A-HJ-NP-Z2-9]{5}$/.test(c)) { joinError.textContent = 'Room codes are 5 letters and numbers.'; return; }
   if (!n) { joinError.textContent = 'Enter your name.'; return; }
   wantedName = n;
-  connect(c);
+  connect(c, true);
 });
 
 function answer(option) {
@@ -201,7 +207,7 @@ function scoreBox(s) {
 }
 
 function onKicked() {
-  store('local', playerKey(code), null);
+  seat(code, null);
   joined = false;
   wantedName = '';
   whoPill.classList.add('hidden');
@@ -211,4 +217,4 @@ function onKicked() {
 }
 
 // Opening the QR link again (or refreshing) puts you back in your seat.
-if (code && store('local', playerKey(code))) connect(code); else showForm();
+if (code && seat(code)) connect(code); else showForm();
