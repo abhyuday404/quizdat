@@ -10,7 +10,7 @@
 <body>
   <div class="phone">
     <div class="phone-top">
-      <span class="brand">QR <span>Quiz</span></span>
+      <a href="/" class="brand">QR Quiz</a>
       <span class="spacer"></span>
       <span class="pill hidden" id="whoPill"></span>
     </div>
@@ -18,8 +18,8 @@
       <form id="joinForm" class="card hidden" autocomplete="off">
         <h1>Join the quiz</h1>
         <label class="small" for="code">Room code</label>
-        <input id="code" maxlength="8" autocapitalize="characters" inputmode="text" placeholder="ABCDE" style="text-transform:uppercase;letter-spacing:.15em;font-weight:800;font-size:1.3rem">
-        <div style="height:12px"></div>
+        <input id="code" maxlength="8" autocapitalize="characters" inputmode="text" placeholder="ABCDE">
+        <div style="height:14px"></div>
         <label class="small" for="name">Your name</label>
         <input id="name" maxlength="24" placeholder="e.g. Sam" autocomplete="nickname">
         <div class="error" id="joinError" style="margin-top:10px"></div>

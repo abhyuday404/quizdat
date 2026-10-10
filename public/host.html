@@ -9,9 +9,8 @@
 <body>
   <!-- Quiz editor -->
   <section id="editor" class="wrap hidden">
-    <div class="row" style="margin-bottom:18px">
-      <a href="/" class="brand" style="color:inherit;text-decoration:none;font-size:1.4rem">QR <span>Quiz</span></a>
-      <span class="muted">Presenter</span>
+    <div class="editor-top">
+      <a href="/" class="brand">QR Quiz <span>/ Presenter</span></a>
     </div>
     <div class="editor-head">
       <div class="title-field">
@@ -23,25 +22,25 @@
       <button id="exportBtn" class="ghost">Export JSON</button>
       <input id="importFile" type="file" accept="application/json,.json" class="hidden">
     </div>
-    <p class="muted" style="margin-top:-6px">Tick the correct option to score answers. Leave none ticked for a plain poll. Your draft is saved in this browser automatically.</p>
+    <p class="editor-help">Tick the correct option to score a question, or leave none ticked for a poll. Drafts save in this browser automatically.</p>
     <div id="questions"></div>
-    <button id="addQuestion" class="ghost" style="width:100%;padding:14px">+ Add question</button>
+    <button id="addQuestion" class="ghost add-question">+ Add question</button>
     <div class="toolbar">
       <div class="error" id="editorError"></div>
       <span class="spacer"></span>
-      <button id="startSession" class="primary big">Start session ▶</button>
+      <button id="startSession" class="primary big">Start session</button>
     </div>
   </section>
 
   <!-- Live session -->
   <section id="stage" class="stage hidden">
     <div class="stage-top">
-      <div class="brand" style="font-size:1.25rem">QR <span>Quiz</span></div>
+      <a href="/" class="brand">QR Quiz</a>
       <div class="pill" id="quizTitlePill"></div>
       <span class="spacer"></span>
       <div class="pill code-pill" id="codePill"></div>
       <div class="pill" id="countPill">👥 0</div>
-      <button class="ghost icon" id="fullscreenBtn" title="Full screen (F)">⛶</button>
+      <button class="ghost icon" id="fullscreenBtn" title="Full screen (F)">Full screen</button>
     </div>
     <div class="stage-main" id="stageMain"></div>
     <div class="stage-bottom">

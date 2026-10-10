@@ -3,24 +3,29 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Run a live quiz on the big screen. Everyone joins by scanning a QR code, and after each question you see how the room answered.">
   <title>QR Quiz</title>
   <link rel="stylesheet" href="/style.css">
 </head>
 <body>
   <main class="hero">
     <div>
-      <h1 class="brand">QR <span>Quiz</span></h1>
-      <p class="muted">Run a live quiz on the big screen. Everyone joins by scanning a QR code.</p>
+      <p class="eyebrow brand">QR Quiz</p>
+      <h1>A quiz the whole room can play.</h1>
+      <p class="lead">Put a QR code on the big screen. Everyone joins from their phone. After each question, see how the room answered.</p>
       <div class="choices">
-        <a class="card choice btn" href="/host" style="display:block">
-          <h2>🎤 Host a quiz</h2>
-          <div class="muted">Write questions, show the QR code, see answers come in.</div>
+        <a class="choice" href="/host">
+          <h2>Host a quiz</h2>
+          <div class="muted">Write questions, show the QR code, watch the answers come in.</div>
+          <span class="arrow">→</span>
         </a>
-        <a class="card choice btn" href="/play" style="display:block">
-          <h2>📱 Join a quiz</h2>
-          <div class="muted">Enter the room code shown on the presenter screen.</div>
+        <a class="choice" href="/play">
+          <h2>Join a quiz</h2>
+          <div class="muted">Enter the room code from the presenter screen.</div>
+          <span class="arrow">→</span>
         </a>
       </div>
+      <p class="foot">No accounts. No app. Works on any phone.</p>
     </div>
   </main>
 </body>

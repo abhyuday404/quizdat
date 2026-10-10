@@ -71,7 +71,7 @@ function questionCard(q, qi) {
   return el('div', { class: 'card qcard' },
     el('div', { class: 'qhead' },
       el('span', { class: 'qnum', text: `Q${qi + 1}` }),
-      el('span', { class: 'muted', style: 'font-size:.85rem', text: q.correct === null ? 'Poll (no scoring)' : 'Scored' }),
+      el('span', { class: 'qkind', text: q.correct === null ? 'Poll' : 'Scored' }),
       el('span', { class: 'spacer' }),
       el('button', { class: 'ghost icon', title: 'Move up', disabled: qi === 0, onclick: () => { quiz.questions.splice(qi - 1, 0, quiz.questions.splice(qi, 1)[0]); structural(); } }, '↑'),
       el('button', { class: 'ghost icon', title: 'Move down', disabled: qi === quiz.questions.length - 1, onclick: () => { quiz.questions.splice(qi + 1, 0, quiz.questions.splice(qi, 1)[0]); structural(); } }, '↓'),
@@ -184,7 +184,7 @@ function renderStage(s) {
   document.getElementById('stage').classList.remove('hidden');
   document.getElementById('quizTitlePill').textContent = s.title;
   document.getElementById('codePill').textContent = s.code;
-  document.getElementById('countPill').textContent = `👥 ${s.players.length}`;
+  document.getElementById('countPill').textContent = `${s.players.length} ${s.players.length === 1 ? 'player' : 'players'}`;
 
   const main = document.getElementById('stageMain');
   const primary = document.getElementById('primaryBtn');
@@ -201,7 +201,7 @@ function renderStage(s) {
     miniQr.dataset.code = s.code;
   }
   const isLast = s.index >= s.total - 1;
-  const nextLabel = isLast ? 'Final results 🏆' : (s.index < 0 ? 'Start quiz ▶' : 'Next question ▶');
+  const nextLabel = isLast ? 'Final results' : (s.index < 0 ? 'Start quiz' : 'Next question');
   const nextAction = isLast && s.index >= 0 ? 'host:end' : 'host:next';
   countdown.stop();
 
@@ -211,14 +211,14 @@ function renderStage(s) {
     setChildren(main, el('div', { class: 'lobby' },
       qr,
       el('div', { class: 'join-info' },
-        el('div', { class: 'muted', text: 'Scan the QR code or open' }),
+        el('div', { class: 'step', text: 'Scan the code, or open' }),
         el('div', { class: 'url', text: s.joinUrl.replace(/\?code=.*/, '') }),
-        el('div', { class: 'muted', style: 'margin-top:14px', text: 'and enter the code' }),
+        el('div', { class: 'step', text: 'and enter the room code' }),
         el('div', { class: 'code', text: s.code }),
         el('h3', {}, `${s.players.length} joined`),
         s.players.length === 0 ? el('div', { class: 'muted', text: 'Waiting for players…' }) : null,
         el('div', { class: 'players' }, s.players.map((p) => playerChip(p))))));
-    primary.textContent = 'Start quiz ▶';
+    primary.textContent = 'Start quiz';
     primary.disabled = s.total === 0;
     primary.dataset.action = 'host:next';
     hint.innerHTML = 'Click a name to remove a player · <span class="kbd">Space</span> next · <span class="kbd">F</span> full screen';
@@ -228,7 +228,7 @@ function renderStage(s) {
       el('div', { class: 'timer', id: 'timer' }),
       el('div', { class: 'q-meta' },
         el('span', { class: 'pill', text: `Question ${s.index + 1} of ${s.total}` }),
-        el('span', { class: 'pill', id: 'answered', text: `✅ ${s.answeredCount} of ${s.players.length} answered` })),
+        el('span', { class: 'pill', id: 'answered', text: `${s.answeredCount} of ${s.players.length} answered` })),
       el('h2', { class: 'q-title', text: q.text }),
       el('div', { class: 'opt-grid' }, q.options.map((o, i) =>
         el('div', { class: `opt-tile o${i}` }, el('span', { class: 'shape', text: SHAPES[i] }), el('span', { text: o })))));
@@ -261,7 +261,7 @@ function renderStage(s) {
   } else if (s.phase === 'ended') {
     const anyScore = s.leaderboard && s.leaderboard.some((p) => p.score > 0);
     setChildren(main, 
-      el('h2', { class: 'q-title', text: anyScore ? '🏆 Final results' : 'Thanks for taking part!' }),
+      el('h2', { class: 'q-title', text: anyScore ? 'Final results' : 'Thanks for taking part' }),
       anyScore ? board(s.leaderboard) : el('p', { class: 'center muted', text: `${s.players.length} people took part.` }));
     primary.textContent = 'New quiz';
     primary.dataset.action = 'new';
@@ -361,7 +361,7 @@ function attach(session) {
   socket.on('state', renderStage);
   socket.on('answers', ({ answeredCount, playerCount }) => {
     const a = document.getElementById('answered');
-    if (a) a.textContent = `✅ ${answeredCount} of ${playerCount} answered`;
+    if (a) a.textContent = `${answeredCount} of ${playerCount} answered`;
   });
   socket.on('disconnect', () => toast('Connection lost. Reconnecting…'));
   socket.on('gone', () => { detach(); showEditor(); toast('That session has expired.'); });
