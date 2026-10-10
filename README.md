@@ -66,16 +66,9 @@ used in QR codes.
 
 ## Custom domain
 
-To serve it at `quiz.abhyudayrai.com`:
-
-1. Add `abhyudayrai.com` to Cloudflare (free plan) and change the nameservers
-   at the registrar to the two Cloudflare assigns. Wait until the zone shows
-   *Active*.
-2. Add this to `wrangler.jsonc` and run `npm run deploy`:
-
-   ```jsonc
-   "routes": [{ "pattern": "quiz.abhyudayrai.com", "custom_domain": true }]
-   ```
-
-Cloudflare creates the DNS record and the certificate. QR codes follow
-whichever address the presenter opened.
+The Worker is bound to `quiz.abhyudayrai.com` through the `routes` entry in
+`wrangler.jsonc` (a Workers custom domain, so Cloudflare manages the DNS
+record and the certificate). It serves there once the zone `abhyudayrai.com`
+is active on Cloudflare, which needs the registrar's nameservers pointed at
+the two Cloudflare assigns. QR codes follow whichever address the presenter
+opened.
