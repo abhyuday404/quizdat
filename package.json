@@ -1,5 +1,5 @@
 {
-  "name": "qr-quiz",
+  "name": "quizdat",
   "version": "1.0.0",
   "description": "Live QR-code quiz: presenter screen + phones, answer distribution after each question",
   "main": "src/worker.js",

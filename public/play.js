@@ -16,7 +16,7 @@ let pendingAnswer = null; // option chosen but not yet confirmed by the server
 let socket = null; // connection to the room in `code`
 let wantedName = ''; // name typed in the form, used for the first join
 
-const playerKey = (c) => `qrquiz.player.${c}`;
+const playerKey = (c) => `quizdat.player.${c}`;
 
 const ANIME_NAMES = [
   'Naruto', 'Sasuke', 'Sakura', 'Kakashi', 'Itachi', 'Hinata', 'Shikamaru', 'Gaara',

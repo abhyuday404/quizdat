@@ -1,4 +1,4 @@
-# QR Quiz
+# QuizDat
 
 A live quiz for a room full of people. The presenter shows questions on a big
 screen, participants join by scanning a QR code on their phones, and after each

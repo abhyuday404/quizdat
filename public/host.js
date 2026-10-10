@@ -1,8 +1,8 @@
 'use strict';
 /* global connectRoom, el, store, toast, makeCountdown, renderBars, setChildren, SHAPES */
 
-const DRAFT_KEY = 'qrquiz.draft';
-const SESSION_KEY = 'qrquiz.hostSession';
+const DRAFT_KEY = 'quizdat.draft';
+const SESSION_KEY = 'quizdat.hostSession';
 const TIME_CHOICES = [[null, 'No timer'], [10, '10 s'], [20, '20 s'], [30, '30 s'], [45, '45 s'], [60, '60 s'], [90, '90 s'], [120, '2 min']];
 
 const SAMPLE = {
