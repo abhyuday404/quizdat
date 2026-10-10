@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>QR Quiz · Presenter</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <!-- Quiz editor -->
+  <section id="editor" class="wrap hidden">
+    <div class="row" style="margin-bottom:18px">
+      <a href="/" class="brand" style="color:inherit;text-decoration:none;font-size:1.4rem">QR <span>Quiz</span></a>
+      <span class="muted">Presenter</span>
+    </div>
+    <div class="editor-head">
+      <div class="title-field">
+        <label class="small" for="quizTitle">Quiz title</label>
+        <input id="quizTitle" maxlength="120" placeholder="e.g. Friday team trivia">
+      </div>
+      <button id="loadSample" class="ghost">Load sample</button>
+      <button id="importBtn" class="ghost">Import JSON</button>
+      <button id="exportBtn" class="ghost">Export JSON</button>
+      <input id="importFile" type="file" accept="application/json,.json" class="hidden">
+    </div>
+    <p class="muted" style="margin-top:-6px">Tick the correct option to score answers. Leave none ticked for a plain poll. Your draft is saved in this browser automatically.</p>
+    <div id="questions"></div>
+    <button id="addQuestion" class="ghost" style="width:100%;padding:14px">+ Add question</button>
+    <div class="toolbar">
+      <div class="error" id="editorError"></div>
+      <span class="spacer"></span>
+      <button id="startSession" class="primary big">Start session ▶</button>
+    </div>
+  </section>
+
+  <!-- Live session -->
+  <section id="stage" class="stage hidden">
+    <div class="stage-top">
+      <div class="brand" style="font-size:1.25rem">QR <span>Quiz</span></div>
+      <div class="pill" id="quizTitlePill"></div>
+      <span class="spacer"></span>
+      <div class="pill code-pill" id="codePill"></div>
+      <div class="pill" id="countPill">👥 0</div>
+      <button class="ghost icon" id="fullscreenBtn" title="Full screen (F)">⛶</button>
+    </div>
+    <div class="stage-main" id="stageMain"></div>
+    <div class="stage-bottom">
+      <span class="muted" id="hint"></span>
+      <span class="spacer"></span>
+      <button class="danger" id="endBtn">End quiz</button>
+      <button class="ghost" id="secondaryBtn"></button>
+      <button class="primary big" id="primaryBtn"></button>
+    </div>
+    <div class="mini-qr hidden" id="miniQr"></div>
+  </section>
+
+  <div class="toast hidden" id="toast"></div>
+  <script src="/net.js"></script>
+  <script src="/common.js"></script>
+  <script src="/host.js"></script>
+</body>
+</html>
