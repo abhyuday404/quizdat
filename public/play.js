@@ -116,10 +116,8 @@ function render(s) {
 
   if (s.phase === 'lobby') {
     setChildren(view, el('div', { class: 'center' },
-      el('h1', { text: "You're in!" }),
-      el('p', { class: 'status', text: `Hi ${s.name}. Keep an eye on the big screen.` }),
-      el('div', { class: 'spinner' }),
-      el('p', { class: 'status', text: `${s.playerCount} ${s.playerCount === 1 ? 'person has' : 'people have'} joined` })));
+      el('h1', { text: "You're in" }),
+      el('div', { class: 'spinner' })));
   } else if (s.phase === 'question') {
     const q = s.question;
     setChildren(view, 
@@ -135,7 +133,7 @@ function render(s) {
           onclick: () => answer(i),
         }, el('span', { class: 'shape', text: SHAPES[i] }), el('span', { text: o })))),
       chosen !== null
-        ? el('p', { class: 'center status', text: s.myAnswer !== null ? 'Locked in. Waiting for the others…' : 'Sending…' })
+        ? el('p', { class: 'center status', text: s.myAnswer !== null ? 'Locked in' : 'Sending…' })
         : null);
     countdown.start(s.deadline, s.serverNow);
   } else if (s.phase === 'results') {
@@ -143,11 +141,11 @@ function render(s) {
     let headline;
     if (q.correct === null) {
       headline = el('div', { class: 'center' },
-        el('h1', { text: s.myAnswer === null ? 'No vote this time' : 'Thanks for voting!' }));
+        el('h1', { text: s.myAnswer === null ? 'No vote' : 'Vote counted' }));
     } else if (s.lastCorrect) {
       headline = el('div', { class: 'center' },
-        el('h1', { class: 'result-good', text: 'Correct!' }),
-        el('p', { text: `+${s.lastGain} points` }));
+        el('h1', { class: 'result-good', text: 'Correct' }),
+        el('p', { class: 'mono', text: `+${s.lastGain}` }));
     } else {
       headline = el('div', { class: 'center' },
         el('h1', { class: 'result-bad', text: s.myAnswer === null ? "Time's up" : 'Not quite' }),
@@ -156,13 +154,12 @@ function render(s) {
     setChildren(view, headline, renderBars(q, s.distribution), scoreBox(s));
   } else if (s.phase === 'leaderboard') {
     setChildren(view, el('div', { class: 'center' },
-      el('h1', { text: `You're #${s.rank}` }),
-      el('p', { class: 'muted', text: 'Next question coming up…' })), scoreBox(s));
+      el('h1', { text: `#${s.rank}` })), scoreBox(s));
   } else if (s.phase === 'ended') {
     const scored = s.podium && s.podium.some((p) => p.score > 0);
     setChildren(view, el('div', { class: 'center' },
-      el('h1', { text: 'Quiz over!' }),
-      scored ? el('p', { text: `You finished #${s.rank} of ${s.playerCount} with ${s.score.toLocaleString()} points.` }) : el('p', { class: 'muted', text: 'Thanks for taking part.' })),
+      el('h1', { text: 'Quiz over' }),
+      scored ? el('p', { class: 'status', text: `#${s.rank} of ${s.playerCount}` }) : null),
     scored ? el('div', { class: 'board' }, s.podium.map((p, i) =>
       el('div', { class: `board-row r${i + 1}` },
         el('span', { class: 'rank', text: `#${i + 1}` }),
@@ -183,7 +180,7 @@ function onKicked() {
   wantedName = '';
   whoPill.classList.add('hidden');
   setChildren(view, el('div', { class: 'center' },
-    el('h1', { text: 'You were removed from the quiz' }),
+    el('h1', { text: 'Removed by the host' }),
     el('button', { class: 'primary', onclick: showForm }, 'Join again')));
 }
 

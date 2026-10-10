@@ -4,7 +4,7 @@ A live quiz for a room full of people. The presenter shows questions on a big
 screen, participants join by scanning a QR code on their phones, and after each
 question the presenter screen shows how the answers were distributed.
 
-Live: <https://qr-quiz.abhyuday404.workers.dev>
+Live: <https://mha.abhyuday404.workers.dev> (and <https://quiz.abhyudayrai.com> once the zone is active)
 
 ## How a session goes
 

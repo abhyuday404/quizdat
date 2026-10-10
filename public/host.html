@@ -14,15 +14,13 @@
     </div>
     <div class="editor-head">
       <div class="title-field">
-        <label class="small" for="quizTitle">Quiz title</label>
-        <input id="quizTitle" maxlength="120" placeholder="e.g. Friday team trivia">
+        <input id="quizTitle" maxlength="120" placeholder="Quiz title" aria-label="Quiz title">
       </div>
-      <button id="loadSample" class="ghost">Load sample</button>
-      <button id="importBtn" class="ghost">Import JSON</button>
-      <button id="exportBtn" class="ghost">Export JSON</button>
+      <button id="loadSample" class="ghost">Sample</button>
+      <button id="importBtn" class="ghost">Import</button>
+      <button id="exportBtn" class="ghost">Export</button>
       <input id="importFile" type="file" accept="application/json,.json" class="hidden">
     </div>
-    <p class="editor-help">Tick the correct option to score a question, or leave none ticked for a poll. Drafts save in this browser automatically.</p>
     <div id="questions"></div>
     <button id="addQuestion" class="ghost add-question">+ Add question</button>
     <div class="toolbar">
@@ -36,15 +34,14 @@
   <section id="stage" class="stage hidden">
     <div class="stage-top">
       <a href="/" class="brand">QR Quiz</a>
-      <div class="pill" id="quizTitlePill"></div>
+      <span class="muted" id="quizTitlePill"></span>
       <span class="spacer"></span>
       <div class="pill code-pill" id="codePill"></div>
       <div class="pill" id="countPill">👥 0</div>
-      <button class="ghost icon" id="fullscreenBtn" title="Full screen (F)">Full screen</button>
+      <button class="ghost icon" id="fullscreenBtn" title="Full screen (F)" aria-label="Full screen">⤢</button>
     </div>
     <div class="stage-main" id="stageMain"></div>
     <div class="stage-bottom">
-      <span class="muted" id="hint"></span>
       <span class="spacer"></span>
       <button class="danger" id="endBtn">End quiz</button>
       <button class="ghost" id="secondaryBtn"></button>

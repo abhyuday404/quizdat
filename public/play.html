@@ -16,12 +16,10 @@
     </div>
     <main class="phone-main" id="main">
       <form id="joinForm" class="card hidden" autocomplete="off">
-        <h1>Join the quiz</h1>
-        <label class="small" for="code">Room code</label>
-        <input id="code" maxlength="8" autocapitalize="characters" inputmode="text" placeholder="ABCDE">
-        <div style="height:14px"></div>
-        <label class="small" for="name">Your name</label>
-        <input id="name" maxlength="24" placeholder="e.g. Sam" autocomplete="nickname">
+        <h1>Join</h1>
+        <input id="code" maxlength="8" autocapitalize="characters" inputmode="text" placeholder="Room code" aria-label="Room code">
+        <div style="height:10px"></div>
+        <input id="name" maxlength="24" placeholder="Your name" aria-label="Your name" autocomplete="nickname">
         <div class="error" id="joinError" style="margin-top:10px"></div>
         <button class="primary big" style="width:100%" id="joinBtn">Join</button>
       </form>

@@ -85,7 +85,6 @@ function questionCard(q, qi) {
     el('div', { class: 'qfoot' },
       el('button', { class: 'ghost', disabled: q.options.length >= 6, onclick: () => { q.options.push(''); structural(); } }, '+ Option'),
       el('span', { class: 'spacer' }),
-      el('label', { class: 'small', style: 'margin:0' }, '⏱ Time limit'),
       timeSelect));
 }
 
@@ -189,7 +188,6 @@ function renderStage(s) {
   const main = document.getElementById('stageMain');
   const primary = document.getElementById('primaryBtn');
   const secondary = document.getElementById('secondaryBtn');
-  const hint = document.getElementById('hint');
   const miniQr = document.getElementById('miniQr');
   secondary.classList.add('hidden');
   primary.classList.remove('hidden');
@@ -211,17 +209,13 @@ function renderStage(s) {
     setChildren(main, el('div', { class: 'lobby' },
       qr,
       el('div', { class: 'join-info' },
-        el('div', { class: 'step', text: 'Scan the code, or open' }),
-        el('div', { class: 'url', text: s.joinUrl.replace(/\?code=.*/, '') }),
-        el('div', { class: 'step', text: 'and enter the room code' }),
+        el('div', { class: 'url', text: s.joinUrl.replace(/\?code=.*/, '').replace(/^https?:\/\//, '') }),
         el('div', { class: 'code', text: s.code }),
-        el('h3', {}, `${s.players.length} joined`),
-        s.players.length === 0 ? el('div', { class: 'muted', text: 'Waiting for players…' }) : null,
+        el('h3', {}, s.players.length === 0 ? 'Waiting for players' : `${s.players.length} joined`),
         el('div', { class: 'players' }, s.players.map((p) => playerChip(p))))));
     primary.textContent = 'Start quiz';
     primary.disabled = s.total === 0;
     primary.dataset.action = 'host:next';
-    hint.innerHTML = 'Click a name to remove a player · <span class="kbd">Space</span> next · <span class="kbd">F</span> full screen';
   } else if (s.phase === 'question') {
     const q = s.question;
     setChildren(main, 
@@ -235,7 +229,6 @@ function renderStage(s) {
     countdown.start(s.deadline, s.serverNow);
     primary.textContent = 'Show results';
     primary.dataset.action = 'host:close';
-    hint.textContent = q.timeLimit ? 'Voting closes when the timer ends or everyone has answered.' : 'Voting closes when everyone has answered, or when you close it.';
   } else if (s.phase === 'results') {
     const q = s.question;
     setChildren(main, 
@@ -252,20 +245,17 @@ function renderStage(s) {
       secondary.textContent = 'Leaderboard';
       secondary.dataset.action = 'host:leaderboard';
     }
-    hint.innerHTML = '<span class="kbd">Space</span> next';
   } else if (s.phase === 'leaderboard') {
     setChildren(main, el('h2', { class: 'q-title', text: 'Leaderboard' }), board(s.leaderboard));
     primary.textContent = nextLabel;
     primary.dataset.action = nextAction;
-    hint.innerHTML = '<span class="kbd">Space</span> next';
   } else if (s.phase === 'ended') {
     const anyScore = s.leaderboard && s.leaderboard.some((p) => p.score > 0);
     setChildren(main, 
-      el('h2', { class: 'q-title', text: anyScore ? 'Final results' : 'Thanks for taking part' }),
-      anyScore ? board(s.leaderboard) : el('p', { class: 'center muted', text: `${s.players.length} people took part.` }));
+      el('h2', { class: 'q-title', text: anyScore ? 'Final results' : 'Thanks for playing' }),
+      anyScore ? board(s.leaderboard) : null);
     primary.textContent = 'New quiz';
     primary.dataset.action = 'new';
-    hint.textContent = '';
   }
   document.getElementById('endBtn').classList.toggle('hidden', s.phase === 'ended');
 }
